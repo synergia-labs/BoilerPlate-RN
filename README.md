@@ -1,2 +1,1 @@
-# BoilerPlate-ReactNative
 # BoilerPlate-RN
