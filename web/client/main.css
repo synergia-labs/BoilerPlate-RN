@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+  overflow-y: hidden;
+  background-color: #eee;
+}
+body {
+  font-family: sans-serif;
+  height: 100%;
+  margin: 0px;
+  user-select: none;
+}
+
+.MuiModal-root .MuiBox-root {
+  max-height: 100vh;
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3e6b01 #ccc;
+  box-sizing: border-box;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ccc;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #3e6b01;
+  border-radius: 20px;
+  border: 3px solid #ccc;
+}
+
+/*
+Loading
+*/
+.line {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  background-color: #5a9902;
+}
+
+.loading .line:nth-last-child(1) {
+  animation: loadingC 0.6s 0.1s linear infinite;
+}
+.loading .line:nth-last-child(2) {
+  animation: loadingC 0.6s 0.2s linear infinite;
+}
+.loading .line:nth-last-child(3) {
+  animation: loadingC 0.6s 0.3s linear infinite;
+}
+
+@keyframes loadingC {
+  0 {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 15px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
