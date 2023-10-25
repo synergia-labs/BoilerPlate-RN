@@ -1,25 +1,20 @@
 //@ts-ignore
-import Meteor, { useTracker } from '@meteorrn/core';
-import React, { useEffect, useState } from 'react';
-import { Alert, StatusBar, View } from 'react-native';
-import { ActivityIndicator, Divider, Text } from 'react-native-paper';
+import React from 'react';
+import { View, useColorScheme } from 'react-native';
 import { homeStyle } from './homeStyles';
 import { HomeHeader } from './components/HomeHeader';
-import { CardSincronizacao } from '../../components/Sincronizacao/CardSincronizacao';
-import LinearGradient from 'react-native-linear-gradient';
-import { theme } from '../../paper/themeRN';
+import { useTheme } from 'react-native-paper';
+
 
 export const Home = (props: any) => {
 	const { user } = props;
-
-
+	const theme = useTheme<{[key:string]: any}>();
+	const { colors } = theme;
+	const sytles = homeStyle(colors);
 
 	return (
-		<View style={homeStyle.container}>
-		<HomeHeader user={user} sincronizando={false} handleShowBluetooth={undefined} />
-			{/* <HomeHeader />
-			<CardSincronizacao /> */}
-
+		<View style={sytles.container}>
+			<HomeHeader user={user} />
 			<View >
 
 			</View>

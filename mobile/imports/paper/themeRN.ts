@@ -32,7 +32,7 @@ export const theme = {
 		surface: '#FFFFFF',
 		onSurface: '#404040',
 		surfaceVariant: '#DAE5E3',
-		onSurfaceVariant: 'rgb(101, 0, 0)',
+		onSurfaceVariant: 'rgb(70, 70, 70)',
 		outline: '#6F7978',
 		elevation: {
 			level0: 'transparent',
@@ -76,6 +76,7 @@ export const theme = {
 		aquaClaro: '#9DE4D6',
 		azulEscuro: '#1c1c7a',
 		amareloClaro: '#FFDD99',
+		vermelho: 'rgb(201, 0, 25)',
 		marrom: '#7e511d',
 		laranja: '#d86a10',
 		amarelo: '#a1981a',
@@ -95,10 +96,10 @@ export const accentColors = {
 export const temaLight = {
 		//cores dinamicas
 		background: '#FFFFFF',
-		barraNavegacao: '#FFFFFE',
+		barraNavegacao: '#eeeeff',
 		navegacaoAtiva: '#000000',
-		secondaryContainer: 'rgba(201, 0, 25, 0.3)',
-		navegacaoInativa: '#777777',
+		secondaryContainer: 'rgba(103, 103, 242, 0.3)',
+		navegacaoInativa: '#747474',
 		iconeNavegacaoAtiva: '#000000',
 		iconeNavegacaoInativa: '#777777',
 		chipAtivado: 'rgb(101, 0, 0)',
@@ -116,7 +117,7 @@ export const temaDark = {
 	accent: 'rgba(101, 0, 0, 0.9)',
 	barraNavegacao: '#1f1f1f',
 	navegacaoAtiva: 'rgb(255, 255, 255)',
-	secondaryContainer: 'rgba(201, 0, 25, 0.4)', //altera a cor da elipse da barra de navegação
+	secondaryContainer: 'rgba(103, 103, 242, 0.2)', //altera a cor da elipse da barra de navegação
 	navegacaoInativa: 'rgb(172, 172, 172)',
 	iconeNavegacaoAtiva: 'rgb(214, 214, 214)',
 	iconeNavegacaoInativa: 'rgb(172, 172, 172)',

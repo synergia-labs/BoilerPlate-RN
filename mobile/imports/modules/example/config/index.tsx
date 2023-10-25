@@ -1,6 +1,5 @@
 import React from 'react';
 import { CameraInput } from '../../../components/SimpleFormRN/components/CameraInput';
-import { bottomTabNavigatorIcon } from '../../../navigation/BottomTabNavigator/bottonTabNavigatorIconStyle';
 import { ExampleContainer } from '../pages/exampleContainerRN';
 
 export const exampleRouterList = [
@@ -43,7 +42,7 @@ export const exampleMenuItemList = [
 	{
 		navigatorName: 'exampleRoute',
 		name: 'Exemplo',
-		icon: bottomTabNavigatorIcon('folder')
+		icon: 'folder'
 	}
 ];
 

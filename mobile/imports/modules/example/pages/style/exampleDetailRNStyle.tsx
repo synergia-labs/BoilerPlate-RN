@@ -1,13 +1,11 @@
 import { StyleSheet } from 'react-native';
 import { theme } from '../../../../paper/themeRN';
 
-export const exampleDetailRNStyle = StyleSheet.create({
+export const exampleDetailRNStyle =(colors: any) => StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: theme.colors.background,
 		padding: 10,
-		width: '100%',
-		height: '100%'
+		backgroundColor: colors.background,
 	},
 	input: {
 		// alignItems: 'center',

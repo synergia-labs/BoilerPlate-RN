@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Meteor from '@meteorrn/core';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { Keyboard, View } from 'react-native';
 import { exampleSch, IExample } from '../../../../shared/modules/example/exampleSch';
 import { SimpleFormRN_old } from '../../../components/SimpleFormRN/SimpleFormRN_old';
@@ -15,18 +14,28 @@ import { IUserProfile } from '../../../../shared/modules/userProfile/userProfile
 import { NetInfoContext } from '../../../context/NetInfoContext';
 import { exampleOff } from '../api/exampleOff';
 import { CameraSF } from '../../../components/SimpleFormRN/components/CameraSF';
+import { HeaderBar } from '../../../components/HeaderBar/HeaderBar';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useTheme } from 'react-native-paper';
+import SimpleFormRN from '../../../components/SimpleFormRN/SimpleFormRN';
+import { CustomButton } from '../../../paper/components/CustomButton/CustomButton';
 
 interface IExampleDetail {
 	user: IUserProfile;
 	screenState: string;
 	id: string;
-	navigation: StackNavigationProp<any>;
+	navigation: NativeStackNavigationProp<any>;
 }
 
 export const ExampleDetail = (props: IExampleDetail) => {
 	const { screenState, id, navigation, user } = props;
+	const titulo = screenState === 'edit' ? 'Editar exemplo' : 'Criar novo exemplo';
+	const theme = useTheme<{[key:string]: any}>();
+	const { colors } = theme;
+	const styles = exampleDetailRNStyle(colors);
+	const simpleFormRef = useRef<any>();
 
-	const [exampleDoc, setExampleDoc] = useState<{ [key: string]: any }>({});
+	const [exampleDoc, setExampleDoc] = useState<IExample>();
 
 	const { address, chip, contacts, files, slider, statusRadio, tasks, typeMulti, ...exampleSchReduzido } = exampleSch;
 
@@ -75,20 +84,21 @@ export const ExampleDetail = (props: IExampleDetail) => {
 	};
 
 	return (
-		<View style={exampleDetailRNStyle.container}>
-			<SimpleFormRN_old
+		<View style={styles.container}>
+			<HeaderBar titulo={titulo} navigation={navigation}/>
+			<SimpleFormRN
+				ref={simpleFormRef}
 				screenState={screenState}
 				doc={exampleDoc}
-				setDoc={setExampleDoc}
-				schema={exampleSchReduzido}
-				onSubmit={handleSubmit}>
-				<View style={exampleDetailRNStyle.primeiroForm}>
-					<TextInputSF name="title" key="title" style={exampleDetailRNStyle.input} />
+				key={exampleDoc ? 'Form_' + exampleDoc._id : 'NewForm'}
+				schema={exampleSchReduzido}>
+				<View style={styles.primeiroForm}>
+					<TextInputSF name="title" key="title" style={styles.input} />
 					<TextInputSF
 						name="description"
 						key="description"
 						mask={Masks.BRL_CURRENCY}
-						style={exampleDetailRNStyle.input}
+						style={styles.input}
 					/>
 					{/* <AudioRecorderSF name="audio" key="audio" /> */}
 					<CameraSF name="image" key="image" />
@@ -97,7 +107,8 @@ export const ExampleDetail = (props: IExampleDetail) => {
 					<SelectInputSF name="type" key="type" />
 					<DateTimePickerSF name="date" key="date" />
 				</View>
-			</SimpleFormRN_old>
+			</SimpleFormRN>
+			<CustomButton text={'Salvar'} startIcon={'check'}  onPress={async() => await handleSubmit(exampleDoc)} />
 		</View>
 	);
 };

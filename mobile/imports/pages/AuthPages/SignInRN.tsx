@@ -1,10 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
-import { Image, ImageBackground, Keyboard, ScrollView,  StatusBar,  View, useColorScheme } from 'react-native';
+import { Image,  ScrollView,  StatusBar,  View, useColorScheme } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text, useTheme } from 'react-native-paper';
 import { signInRNStyle } from './SigInRNStyle';
-import shortid from 'shortid';
 import { IAsyncStorageUser, IUserContext, UserContext } from '../../context/UserContext';
 import { USER_ASYNC_COLLECTION } from '../../config/storageConfig';
 import { GeneralComponentsContext, IGeneralComponentsContext } from '../../generalComponents/GeneralComponents';
@@ -31,7 +30,6 @@ export const SignInRN = () => {
 		email: '',
 		password: ''
 	});
-	const [keyboardStatus, setKeyboardStatus] = useState<'FECHADO' | 'ABERTO'>('FECHADO');
 	const isInternetConnected = useContext(NetInfoContext);
 	
 	const theme = useTheme<{[key:string]: any}>();
@@ -39,29 +37,6 @@ export const SignInRN = () => {
 	const styles = signInRNStyle(colors);
 	const colorScheme = useColorScheme();
 	const signInBackground = colorScheme === 'dark'? require('../../../public/images/lilas_branca_horizontal.png') :require('../../../public/images/lilas_preta_horizontal.png');
-
-	useEffect(() => {
-		const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
-			setKeyboardStatus('ABERTO');
-		});
-		const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
-			setKeyboardStatus('FECHADO');
-		});
-
-		return () => {
-			showSubscription.remove();
-			hideSubscription.remove();
-		};
-	}, []);
-
-	useEffect(() => {
-		keyboardStatus === 'FECHADO' && Keyboard.dismiss();
-	}, [keyboardStatus]);
-
-
-	const criaDocUsuario = () => {
-		return { _id: nanoid(), ...credentials };
-	};
 
 	const configuraUsuarioAsyncStorage = async (user: IAsyncStorageUser) => {
 		try {

@@ -7,7 +7,7 @@ import { IUserProfile } from '../../../shared/modules/userProfile/userProfileSch
 import { Route } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { bottomTabNavigatorIcon } from './bottonTabNavigatorIconStyle';
+import { useTheme } from 'react-native-paper';
 
 const BottomTab = createMaterialBottomTabNavigator<IBottomTabParamList>();
 
@@ -21,14 +21,29 @@ interface IAppProps {
 	user: IUserProfile;
 }
 
+
+const varianteSemOutline = (name: string) =>  {
+    return name.replace('-outline', '');
+};
+
+const bottomTabNavigatorIcon = (name: string, colors: {[key:string]: any}) => {
+	const variante = varianteSemOutline(name);
+	return ({ focused }: { focused: boolean }) => <Icon name={focused ? variante : name} 
+			size={24} color={focused ? colors.iconeNavegacaoAtiva : colors.iconeNavegacaoInativa} />;
+};
+
 export const BottomTabNavigator = (appProps: IAppProps) => {
+	const theme = useTheme<{[key:string]: any}>();
+	const { colors } = theme;
+
 	return (
-		<BottomTab.Navigator initialRouteName="Home">
+		<BottomTab.Navigator initialRouteName="Home" activeColor={colors.navegacaoAtiva} inactiveColor={colors.navegacaoInativa} barStyle={{backgroundColor: colors.barraNavegacao }}
+		>
 			<BottomTab.Screen
 				name="HomeScreen"
 				options={{
 					tabBarLabel: 'Home',
-					tabBarIcon: bottomTabNavigatorIcon('home')
+					tabBarIcon: bottomTabNavigatorIcon('home', colors)
 				}}>
 				{(props) => <HomeNavigator {...props} {...appProps} />}
 			</BottomTab.Screen>
@@ -41,7 +56,7 @@ export const BottomTabNavigator = (appProps: IAppProps) => {
 						component={getModuleNavigator(menuData.navigatorName)}
 						options={{
 							tabBarLabel: menuData.name,
-							tabBarIcon: menuData.icon ?? bottomTabNavigatorIcon('folder')
+							tabBarIcon: bottomTabNavigatorIcon(menuData.icon, colors)
 						}}
 					/>
 				);
@@ -73,7 +88,7 @@ const getModuleNavigator = (navigatorName: string) => {
 		return (
 			<Navigator
 				initialRouteName={InitialRouter ? InitialRouter.name : navigatorName}
-				screenOptions={{ headerShown: true }}>
+				screenOptions={{ headerShown: false }}>
 				{Modules.getListOfRouterModules(navigatorName).map((routerData) => {
 					const ScreenComponent = routerData.component;
 					return (

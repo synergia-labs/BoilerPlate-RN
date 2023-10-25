@@ -1,5 +1,5 @@
 import { StyleProp, TextStyle, View, useColorScheme } from 'react-native';
-import { TextInput, TextInputProps } from 'react-native-paper';
+import { Icon, TextInput, TextInputProps } from 'react-native-paper';
 import { SimpleLabel } from '../SimpleLabel/SimpleLabel';
 import { theme } from '../../themeRN';
 
