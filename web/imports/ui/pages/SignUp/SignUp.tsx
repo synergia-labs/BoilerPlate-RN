@@ -3,7 +3,7 @@
 
 // login page overrides the form’s submit event and call Meteor’s loginWithPassword()
 // Authentication errors modify the component’s state to be displayed
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, NavigateFunction } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import TextField from '../../components/SimpleFormFields/TextField/TextField';
@@ -14,6 +14,7 @@ import SimpleForm from '/imports/ui/components/SimpleForm/SimpleForm';
 import { signUpStyle } from './SignUpStyle';
 import { Box } from '@mui/system';
 import { IUserProfile } from '/imports/userprofile/api/UserProfileSch';
+import { FixedMenuLayoutContext } from '../../layouts/FixedMenuLayout';
 
 interface ISignUp {
 	showNotification: (options?: Object) => void;
@@ -23,6 +24,13 @@ interface ISignUp {
 
 export const SignUp = (props: ISignUp) => {
 	const { showNotification } = props;
+
+	const { handleExibirAppBar, handleOcultarAppBar } = useContext(FixedMenuLayoutContext);
+
+	useEffect(() => {
+		handleOcultarAppBar();
+		return () => handleExibirAppBar();
+	}, []);
 
 	const handleSubmit = (doc: { email: string; password: string }) => {
 		const { email, password } = doc;
@@ -51,7 +59,7 @@ export const SignUp = (props: ISignUp) => {
 		<Container style={signUpStyle.containerSignUp}>
 			<h2 style={signUpStyle.labelRegisterSystem}>
 				<img src="/images/wireframe/logo.png" style={signUpStyle.imageLogo} />
-				{'Cadastrar no sistema'}
+				Cadastrar no sistema
 			</h2>
 			<SimpleForm
 				schema={{
@@ -80,6 +88,7 @@ export const SignUp = (props: ISignUp) => {
 				<Link to="/signin" color={'secondary'}>
 					aqui
 				</Link>
+				.
 			</Box>
 		</Container>
 	);

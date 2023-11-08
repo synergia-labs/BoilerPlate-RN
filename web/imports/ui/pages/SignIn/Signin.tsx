@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import SimpleForm from '/imports/ui/components/SimpleForm/SimpleForm';
 
 import { signinStyle } from './SigninStyle';
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import { FixedMenuLayoutContext } from '../../layouts/FixedMenuLayout';
 import { IUserProfile } from '/imports/userprofile/api/UserProfileSch';
 
@@ -70,6 +70,8 @@ export const SignIn = (props: ISignIn) => {
 				alignItems: 'center',
 				height: 50,
 				color: '#FFF',
+				borderRadius: 2,
+				marginBottom: 1,
 				...customCss
 			}}>
 			<i className={iconClass} />
@@ -114,7 +116,7 @@ export const SignIn = (props: ISignIn) => {
 
 	return (
 		<>
-			<Container sx={{ width: '100%', maxWidth: 400 }}>
+			<Container sx={{ width: '100%',  justifyContent: 'center', display: 'flex', alignItems: 'center', height: '100%' }}>
 				<Box
 					sx={{
 						display: 'flex',
@@ -153,7 +155,7 @@ export const SignIn = (props: ISignIn) => {
 							</Box>
 						</SimpleForm>
 						<Box style={signinStyle.containerRouterSignUp}>
-							<Button id="newUser" color={'secondary'} onClick={() => navigate('/signup')}>
+							<Button id="newUser" color='secondary' onClick={() => navigate('/signup')}>
 								É novo por aqui? Clique aqui para se cadastrar!
 							</Button>
 						</Box>

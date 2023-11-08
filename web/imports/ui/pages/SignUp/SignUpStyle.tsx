@@ -17,7 +17,7 @@
 export const signUpStyle = {
 	containerSignUp: {
 		width: '100%',
-		maxWidth: 400
+		maxWidth: 430
 	},
 	labelRegisterSystem: {
 		textAlign: 'center',
@@ -27,14 +27,17 @@ export const signUpStyle = {
 		alignItems: 'center'
 	},
 	imageLogo: {
-		maxWidth: 100
+		maxWidth: 100,
+		borderRadius: '100%'
 	},
 	containerButtonOptions: {
+		marginTop: 2,
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-around'
 	},
 	containerRouterSignIn: {
-		color: '#444'
+		color: '#444',
+		marginTop: 2,
 	}
 };

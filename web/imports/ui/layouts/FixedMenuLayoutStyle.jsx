@@ -39,18 +39,17 @@ const fixedMenuLayoutStyle = {
 	},
 	homeIconButton: {
 		maxHeight: 50,
-		maxWidth: 80,
-		width: '80px',
-		height: '50px',
-		margin: '4.8px 0 4.4px 27px',
-		objectFit: 'contain'
+		maxWidth: 300,
+		margin: 4,
+		objectFit: 'contain',
+		cursor: 'pointer',
 	},
 	containerFixedMenu: {
 		display: 'flex',
 		flexDirection: 'row',
 		width: '100%',
 		alignItems: 'center',
-		justifyContent: 'space-between'
+		justifyContent: 'space-between',
 	},
 	toolbarFixedMenu: {
 		display: 'flex',

@@ -10,7 +10,7 @@ export const userProfileSch = {
     },
     username: {
         type: String,
-        label: 'UserName',
+        label: 'Username',
         defaultValue: '',
         optional: true,
     },

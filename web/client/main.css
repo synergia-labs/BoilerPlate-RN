@@ -20,7 +20,7 @@ body {
 /* Works on Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #3e6b01 #ccc;
+  scrollbar-color: #6768f2 #ccc;
   box-sizing: border-box;
 }
 
@@ -34,20 +34,22 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #3e6b01;
+  background-color: #6768f2;
   border-radius: 20px;
   border: 3px solid #ccc;
 }
+
 
 /*
 Loading
 */
 .line {
+  margin-top: 15px;
   display: inline-block;
   width: 15px;
   height: 15px;
   border-radius: 15px;
-  background-color: #5a9902;
+  background-color: #6768f2;
 }
 
 .loading .line:nth-last-child(1) {

@@ -289,6 +289,7 @@ const getLightTheme = (props: { fontScale: number; isMobile: boolean }): IThemeO
 				}
 			},
 
+
 			MuiModal: {
 				styleOverrides: {
 					root: {

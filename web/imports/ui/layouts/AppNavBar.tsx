@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -12,15 +12,18 @@ import Toolbar from '@mui/material/Toolbar';
 import * as appStyle from '/imports/materialui/styles';
 import Container from '@mui/material/Container';
 import { IAppMenu } from '/imports/modules/modulesTypings';
-import { FormControlLabel } from '@mui/material';
+import { Avatar, FormControlLabel, Menu, MenuItem, Tooltip } from '@mui/material';
 import Switch from '@mui/material/Switch';
 import { ILayoutProps } from '/imports/typings/BoilerplateDefaultTypings';
 import Box from '@mui/material/Box';
+import { DayNightToggle } from './components/DayNightToggle';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const HomeIconButton = ({ navigate }: any) => {
 	return (
 		<Box onClick={() => navigate('/')} sx={fixedMenuLayoutStyle.containerHomeIconButton}>
-			<img style={fixedMenuLayoutStyle.homeIconButton} src="/images/wireframe/logo.png" />
+			<img style={fixedMenuLayoutStyle.homeIconButton} src="/images/wireframe/principal_branca_horizontal.png" />
 		</Box>
 	);
 };
@@ -31,7 +34,33 @@ export const AppNavBar = (props: IAppNavBar) => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	const { user, theme, themeOptions } = props;
+	const { user, theme, themeOptions, showDrawer, showWindow } = props;
+
+	const [anchorEl, setAnchorEl] = useState<Object | null>(null);
+	const open = Boolean(anchorEl);
+
+	const openPage = (url: string) => () => {
+		handleClose();
+		navigate(url);
+	};
+
+	const viewProfile = () => {
+		handleClose();
+		showDrawer && showDrawer({ title: 'Usuário', url: `/userprofile/view/${user._id}` });
+	};
+
+	const viewProfileMobile = () => {
+		handleClose();
+		showWindow && showWindow({ title: 'Usuário', url: `/userprofile/view/${user._id}` });
+	};
+
+	const handleMenu = (event: React.SyntheticEvent) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
 
 	const pathIndex = (Modules.getAppMenuItemList() || [])
 		.filter((item: IAppMenu | null) => !item?.isProtected || (user && user.roles?.indexOf('Publico') === -1))
@@ -84,34 +113,115 @@ export const AppNavBar = (props: IAppNavBar) => {
 	}
 
 	return (
-		<AppBar position="static" enableColorOnDark>
-			<Container sx={fixedMenuLayoutStyle.containerFixedMenu}>
-				<HomeIconButton navigate={navigate} />
-				<Toolbar sx={fixedMenuLayoutStyle.toolbarFixedMenu}>
-					<Box
-						sx={{
-							width: '100%',
-							display: 'flex',
-							flexDirection: 'row',
-							justifyContent: 'flex-end'
-						}}>
-						{(Modules.getAppMenuItemList() || [])
-							.filter((item: IAppMenu | null) => !item?.isProtected || (user && user.roles?.indexOf('Publico') === -1))
-							.map((menuData, ind) => (
-								<Button
-									variant={pathIndex !== ind ? 'outlined' : 'contained'}
-									sx={{
-										...appNavBarStyle.buttonMenuItem,
-										color: pathIndex !== ind ? appStyle.secondaryColor : '#FFF'
-									}}
-									key={menuData?.path}
-									onClick={() => navigate(menuData?.path as string)}>
-									{menuData?.name}
-								</Button>
-							))}
-					</Box>
-				</Toolbar>
-			</Container>
-		</AppBar>
+		<Container sx={appNavBarStyle.containerNavBar} maxWidth={false}>
+			<HomeIconButton navigate={navigate} />
+
+			<DayNightToggle
+				isDarkMode={themeOptions?.isDarkThemeMode as boolean}
+				setDarkMode={(evt) => {
+					themeOptions?.setDarkThemeMode(evt.target.checked);
+				}}
+			/>
+
+			<Box
+				sx={{
+					display: 'flex',
+					flexDirection: 'row',
+					alignItems: 'center',
+					border: '1px solid #CCC',
+					borderRadius: 2,
+					padding: 1,
+					color: theme.palette.primary.main
+				}}>
+				<Button
+					variant={'contained'}
+					color={'secondary'}
+					sx={{
+						minWidth: 15,
+						minHeight: 15,
+					}}
+					onClick={() => themeOptions?.setFontScale(themeOptions?.fontScale * 0.85)}>
+					{'-'}
+				</Button>
+				<Box sx={{color: 'white', marginLeft: 2, marginRight: 2}}>
+					fontScale
+				</Box>
+				<Button
+					variant={'contained'}
+					color={'secondary'}
+					sx={{
+						minWidth: 15,
+						minHeight: 15,
+					}}
+					onClick={() => themeOptions?.setFontScale(themeOptions?.fontScale * 1.15)}>
+					{'+'}
+				</Button>
+			</Box>
+			<Toolbar sx={fixedMenuLayoutStyle.toolbarFixedMenu}>
+				<Box
+					sx={{
+						width: '100%',
+						display: 'flex',
+						flexDirection: 'row',
+						justifyContent: 'flex-end'
+					}}>
+					{(Modules.getAppMenuItemList() || [])
+						.filter((item: IAppMenu | null) => !item?.isProtected || (user && user.roles?.indexOf('Publico') === -1))
+						.map((menuData, ind) => (
+							<Button
+								color="secondary"
+								variant={'contained'}
+								sx={{
+									...appNavBarStyle.buttonMenuItem
+								}}
+								key={menuData?.path}
+								onClick={() => navigate(menuData?.path as string)}>
+								{menuData?.name}
+							</Button>
+						))}
+				</Box>
+			</Toolbar>
+			<Tooltip title="Preferências">
+				<IconButton
+					onClick={handleMenu}
+					sx={{ ml: 2 }}
+					aria-controls={open ? 'account-menu' : undefined}
+					aria-haspopup="true"
+					aria-expanded={open ? 'true' : undefined}>
+					<AccountCircle id="Perfil" name="Perfil" style={{ color: 'white', fontSize: 30 }} />
+				</IconButton>
+			</Tooltip>
+			<Menu
+				id="menu-appbar"
+				anchorEl={anchorEl as Element}
+				anchorOrigin={{
+					vertical: 'bottom',
+					horizontal: 'right'
+				}}
+				keepMounted
+				transformOrigin={{
+					vertical: 'top',
+					horizontal: 'right'
+				}}
+				open={open}
+				onClose={handleClose}>
+				{!user || !user._id
+					? [
+							<MenuItem key={'signin'} onClick={openPage('/signin')}>
+								Entrar
+							</MenuItem>
+					  ]
+					: [
+							<MenuItem key={'userprofile'} onClick={viewProfile}>
+								{user.username || 'Editar'}
+							</MenuItem>,
+
+							<MenuItem key={'signout'} onClick={openPage('/signout')}>
+								<ExitToAppIcon fontSize="small" style={{color: 'red'}}/> 
+								<Box style={{color: 'red'}}> Sair </Box>
+							</MenuItem>
+					  ]}
+			</Menu>
+		</Container>
 	);
 };

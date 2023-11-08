@@ -17,13 +17,13 @@
 import React from 'react';
 
 /////////////////////////////////////////////// Paleta de cores do prototipo de alta /////////////////////////////////
-const primary = '#5a9902';
+const primary = '#6768f2'; 
 const onPrimary = '#FFFFFF';
 const primaryContainer = '#9DE4D6';
 const onPrimaryContainer = '#034944';
-const primaryOnHover = 'rgba(0, 126, 122, 0.1)';
+const primaryOnHover = 'rgba(103, 103, 242, 0.31)';
 
-const secondary = '#2182C0';
+const secondary = '#00e280';
 const onSecondary = '#034944';
 const secondaryContainer = '#FFDD99';
 const onSecondaryContainer = '#034944';
@@ -36,7 +36,7 @@ const onErrorContainer = '#B30501';
 
 const background = '#F0F2FB';
 const onBackground = '#404040';
-const buttonOnHover = '#006B68';
+const buttonOnHover = '#7373ec';
 
 const primaryGradient = 'linear-gradient(180deg, #0ABB98 0%, #08AE92 45.83%, #06A28B 69.27%, #007E7A 100%)';
 const secondaryGradient = 'linear-gradient(180deg, #034944 0%, #007E7A 100%)';
@@ -86,13 +86,13 @@ const cinzaMedio = '#BCBEC0';
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const darkPalette = {
-	primary: '#307000',
+	primary: '#6768f2',
 	onPrimary: '#000000',
 	primaryContainer: '#034944',
 	onPrimaryContainer: '#9DE4D6',
 	primaryOnHover: 'rgba(10, 187, 152, 0.1)',
 
-	secondary: '#0272BA',
+	secondary: '#00e280',
 	onSecondary: '#000000',
 	secondaryContainer: '#034944',
 	onSecondaryContainer: '#ECB11F',
@@ -154,7 +154,7 @@ const darkPalette = {
 //////////////////////////////////////////////////// Tipografia /////////////////////////////////////////////////////
 
 //Família de Fontes
-const fontFamily = "'ValeSans', sans-serif";
+const fontFamily = "'Roboto', sans-serif";
 
 // Tipografia
 const displayLarge = (_fontScale: number = 1) => ({

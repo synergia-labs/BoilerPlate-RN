@@ -147,6 +147,7 @@ export default ({
 		<div
 			key={name}
 			style={{
+				marginTop: 10,
 				display: 'flex',
 				flexDirection: 'column',
 				...appStyle.fieldContainer,

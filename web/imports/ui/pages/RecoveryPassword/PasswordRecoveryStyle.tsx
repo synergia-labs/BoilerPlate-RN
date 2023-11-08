@@ -27,10 +27,11 @@ export const passwordRecoveryStyle = {
 		alignItems: 'center'
 	},
 	imageLogo: {
-		maxWidth: 100
+		maxWidth: 100,
+		borderRadius: '100%'
 	},
 	containerButtonOptions: {
-		marginTop: 30,
+		marginTop: 2,
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',

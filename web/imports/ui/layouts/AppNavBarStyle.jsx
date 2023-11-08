@@ -18,7 +18,11 @@ export const appNavBarStyle = {
 	containerNavBar: {
 		display: 'flex',
 		flexDirection: 'row',
-		width: '100%'
+		alignItems: 'center',
+		maxWidth: '100vw',
+		paddingTop: 1,
+		paddingBottom: 1,
+		backgroundColor: '#6768f2'
 	},
 	subContainerNavBar: {
 		width: '100%',
@@ -34,14 +38,21 @@ export const appNavBarStyle = {
 		lineHeight: 1.2,
 		letterSpacing: '0.55px',
 		textAlign: 'left',
-		color: '#ffffff',
-		textTransform: 'none'
+		textTransform: 'none',
+		marginRight: 2
 	},
 	accountCircle: {
-		color: '#3e6b01'
+		backgroundColor: 'white'
 	},
 	dropDown: {
 		color: '#ffffff',
 		width: 17
+	},
+	containerAccountCircle: {
+		display: 'flex',
+		flexDirection: 'row'
+	},
+	accountCircle: {
+		color: '#3e6b01'
 	}
 };

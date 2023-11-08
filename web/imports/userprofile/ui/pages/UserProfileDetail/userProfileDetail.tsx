@@ -44,6 +44,7 @@ const UserProfileDetail = ({ screenState, loading, user, save, navigate, hiddenT
 								: () => navigate(`/userprofile/list`)
 						}
 						color={'secondary'}
+						style={{marginRight: 10}}
 						variant="contained">
 						{screenState === 'view' ? 'Voltar' : 'Cancelar'}
 					</Button>

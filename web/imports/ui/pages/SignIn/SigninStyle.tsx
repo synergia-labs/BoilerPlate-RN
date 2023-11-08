@@ -33,12 +33,12 @@ const signinStyle = {
 		alignItems: 'center'
 	},
 	imageLogo: {
-		backgroundColor: '#ff9937',
 		maxWidth: 100,
-		borderRadius: 30,
-		padding: 5
+		borderRadius: '100%',
+		margin: 5
 	},
 	containerButtonOptions: {
+		marginTop: 2,
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between'
@@ -56,7 +56,8 @@ const signinStyle = {
 		marginLeft: 15
 	},
 	containerRouterSignUp: {
-		marginTop: 15
+		marginTop: 15,
+		marginBottom: 15,
 	},
 	containerLoginOptions: {
 		paddingRight: 5,
@@ -67,20 +68,24 @@ const signinStyle = {
 		flexDirection: 'column'
 	},
 	containerButtonGoogle: {
-		width: '100%'
+		width: '100%',
+		marginBottom: 15,
 	},
 	containerButtonFacebook: {
-		width: '100%'
+		width: '100%',
+		marginBottom: 15,
 	},
 	buttonLoginGoogle: {
 		background: '#dd4b39',
 		width: '100%',
-		cursor: 'pointer'
+		cursor: 'pointer',
+		borderRadius: 8
 	},
 	buttonLoginFacebook: {
 		background: '#3B5998',
 		width: '100%',
-		cursor: 'pointer'
+		cursor: 'pointer',
+		borderRadius: 8
 	}
 };
 

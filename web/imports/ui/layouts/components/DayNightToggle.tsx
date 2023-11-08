@@ -21,7 +21,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 		}
 	},
 	'& .MuiSwitch-thumb': {
-		backgroundColor: theme.palette.primary.main,
+		backgroundColor: theme.palette.secondary.main,
 		width: 32,
 		height: 32,
 		'&:before': {
@@ -42,5 +42,5 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 export const DayNightToggle = (props: { isDarkMode: boolean; setDarkMode: (evt: any) => void }) => {
 	const { isDarkMode, setDarkMode } = props;
-	return <MaterialUISwitch color={'secondary'} value={isDarkMode} onChange={setDarkMode} />;
+	return <MaterialUISwitch color={'secondary'} value={isDarkMode} onChange={setDarkMode} sx={{marginLeft: 10, marginRight: 10}}/>;
 };
