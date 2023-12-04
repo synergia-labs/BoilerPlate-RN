@@ -2,7 +2,6 @@ import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { exampleApi } from '../../api/exampleApi';
 import { userprofileApi } from '../../../../userprofile/api/UserProfileApi';
-import { SimpleTable } from '/imports/ui/components/SimpleTable/SimpleTable';
 import Add from '@mui/icons-material/Add';
 import Delete from '@mui/icons-material/Delete';
 import Fab from '@mui/material/Fab';
@@ -109,56 +108,8 @@ const ExampleList = (props: IExampleList) => {
 
 	return (
 		<PageLayout title={'Lista de Exemplos'} actions={[]}>
-			<SearchDocField
-				api={userprofileApi}
-				subscribe={'getListOfusers'}
-				getOptionLabel={(doc) => doc.username || 'error'}
-				sort={{ username: 1 }}
-				textToQueryFilter={(textoPesquisa) => {
-					textoPesquisa = textoPesquisa.replace(/[+[\\?()*]/g, '\\$&');
-					return { username: new RegExp(textoPesquisa, 'i') };
-				}}
-				autocompleteOptions={{ noOptionsText: 'Não encontrado' }}
-				name={'userId'}
-				label={'Pesquisar com SearchDocField'}
-				onChange={handleSearchDocChange}
-				placeholder={'Todos'}
-				showAll={false}
-				key={'SearchDocKey'}
-			/>
 
-			{!isMobile && (
-				<ToggleField
-					label={'Habilitar ComplexTable'}
-					value={viewComplexTable}
-					onChange={(evt: { target: { value: boolean } }) => {
-						setViewComplexTable(evt.target.value);
-					}}
-				/>
-			)}
-			{(!viewComplexTable || isMobile) && (
-				<>
-					<TextField
-						name={'pesquisar'}
-						label={'Pesquisar'}
-						value={text}
-						onChange={change}
-						onKeyPress={keyPress}
-						placeholder="Digite aqui o que deseja pesquisa..."
-						action={{ icon: 'search', onClick: click }}
-					/>
-
-					<SimpleTable
-						schema={schemaReduzido}
-						data={examples}
-						onClick={onClick}
-						actions={[{ icon: <Delete />, id: 'delete', onClick: callRemove }]}
-					/>
-				</>
-			)}
-
-			{!isMobile && viewComplexTable && (
-				<ComplexTable
+			<ComplexTable
 					data={examples}
 					schema={schemaReduzido}
 					onRowClick={(row) => navigate('/example/view/' + row.id)}
@@ -173,7 +124,6 @@ const ExampleList = (props: IExampleList) => {
 					onFilterChange={onSearch}
 					loading={loading}
 				/>
-			)}
 
 			<div
 				style={{

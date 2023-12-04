@@ -2,7 +2,6 @@ import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { exampleApi } from '../../api/exampleApi';
 import { userprofileApi } from '../../../../userprofile/api/UserProfileApi';
-import { SimpleTable } from '/imports/ui/components/SimpleTable/SimpleTable';
 import _ from 'lodash';
 import Add from '@mui/icons-material/Add';
 import Delete from '@mui/icons-material/Delete';
@@ -110,62 +109,6 @@ const ExampleList = (props: IExampleList) => {
 	// @ts-ignore
 	return (
 		<PageLayout title={'Lista de Exemplos'} actions={[]}>
-			<SearchDocField
-				api={userprofileApi}
-				subscribe={'getListOfusers'}
-				getOptionLabel={(doc) => doc.username || 'error'}
-				sort={{ username: 1 }}
-				textToQueryFilter={(textoPesquisa) => {
-					textoPesquisa = textoPesquisa.replace(/[+[\\?()*]/g, '\\$&');
-					return { username: new RegExp(textoPesquisa, 'i') };
-				}}
-				autocompleteOptions={{ noOptionsText: 'Não encontrado' }}
-				name={'userId'}
-				label={'Pesquisar com SearchDocField'}
-				onChange={handleSearchDocChange}
-				placeholder={'Todos'}
-				showAll={false}
-				key={'SearchDocKey'}
-			/>
-
-			{!isMobile && (
-				<ToggleField
-					label={'Habilitar ComplexTable'}
-					value={viewComplexTable}
-					onChange={(evt: { target: { value: boolean } }) => {
-						console.log('evt', evt, evt.target);
-						setViewComplexTable(evt.target.value);
-					}}
-				/>
-			)}
-			{(!viewComplexTable || isMobile) && (
-				<>
-					<TextField
-						name={'pesquisar'}
-						label={'Pesquisar'}
-						value={text}
-						onChange={change}
-						onKeyPress={keyPress}
-						placeholder="Digite aqui o que deseja pesquisa..."
-						action={{ icon: 'search', onClick: click }}
-					/>
-
-					<SimpleTable
-						schema={_.pick(
-							{
-								...exampleApi.schema,
-								nomeUsuario: { type: String, label: 'Criado por' }
-							},
-							['image', 'title', 'description', 'nomeUsuario']
-						)}
-						data={examples}
-						onClick={onClick}
-						actions={[{ icon: <Delete />, id: 'delete', onClick: callRemove }]}
-					/>
-				</>
-			)}
-
-			{!isMobile && viewComplexTable && (
 				<ComplexTable
 					data={examples}
 					schema={_.pick(
@@ -187,8 +130,6 @@ const ExampleList = (props: IExampleList) => {
 					onFilterChange={onSearch}
 					loading={loading}
 				/>
-			)}
-
 			<div
 				style={{
 					width: '100%',

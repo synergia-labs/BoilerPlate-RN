@@ -43,6 +43,7 @@ export const AppRouterSwitch = React.memo((switchProps: ILayoutProps) => {
 						const isLogged = switchProps?.isLoggedIn;
 						let possuiPermissao = true;
 						if (resources) {
+							console.log('o contexto 3', getUser())
 							possuiPermissao = segurancaApi.podeAcessarRecurso(getUser(), ...resources);
 						}
 						return (

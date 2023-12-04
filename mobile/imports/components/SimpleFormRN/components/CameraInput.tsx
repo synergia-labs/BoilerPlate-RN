@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Linking, StatusBar, View } from 'react-native';
-import { Icon, IconButton, Text } from 'react-native-paper';
+import { IconButton, Text } from 'react-native-paper';
 import { Camera, useCameraDevices, TakePhotoOptions } from 'react-native-vision-camera';
 import { theme } from '../../../paper/themeRN';
 import { styles } from './CameraInputStyles';
@@ -79,10 +79,10 @@ export const CameraInput = (props: ICameraInput) => {
 			{/* Header da camera */}
 			<View style={styles.close}>
 				<IconButton
-					icon={({ size, color }) => <Icon source={'close'} size={size} color={color} />}
+					icon={({ size, color }) => <CustomIcon icon={'close'} size={size} color={color} />}
 					size={24}
 					style={{ backgroundColor: theme.colors.branco }}
-					iconColor={theme.colors.verdeEscuro}
+					iconColor={theme.colors.verdeVale}
 					onPress={handleCloseCamera}
 					disabled={desativarBotaoFoto}
 				/>
@@ -103,14 +103,14 @@ export const CameraInput = (props: ICameraInput) => {
 					/>
 
 					<View style={styles.footer}>
-						<IconButton
-							icon={({ size, color }) => <Icon source='close' size={size} color={color} />}
+						{/* <IconButton
+							icon={({ size, color }) => <CustomIcon icon={'camera'} size={size} color={color} />}
 							onPress={async () => await capturarImagem()}
 							style={styles.fab}
-							iconColor={theme.colors.verdeEscuro}
+							iconColor={theme.colors.verdeVale}
 							size={52}
 							disabled={desativarBotaoFoto}
-						/>
+						/> */}
 					</View>
 				</View>
 			)}

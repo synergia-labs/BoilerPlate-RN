@@ -12,8 +12,6 @@ class ExampleServerApi extends ProductServerBase<IExample> {
 			// saveImageToDisk: true,
 		});
 
-		const self = this;
-
 		this.addTransformedPublication(
 			'exampleList',
 			(filter = {}) => {
@@ -46,7 +44,7 @@ class ExampleServerApi extends ProductServerBase<IExample> {
 			(params, options) => {
 				console.log('Rest', params);
 				if (params.exampleId) {
-					return self
+					return this
 						.defaultCollectionPublication(
 							{
 								_id: params.exampleId
@@ -60,6 +58,15 @@ class ExampleServerApi extends ProductServerBase<IExample> {
 			},
 			['get']
 		);
+		this.registerMethod('obtemExemplo', this.obtemExemplo.bind(this));
+		this.registerMethod('obtemExemplos', this.obtemExemplos.bind(this));
+	}
+
+	obtemExemplos = () => {
+		return this.collectionInstance.find({}).fetch();
+	};
+	obtemExemplo = (id: string) => {
+		return this.collectionInstance.find({_id: id}).fetch();
 	}
 }
 

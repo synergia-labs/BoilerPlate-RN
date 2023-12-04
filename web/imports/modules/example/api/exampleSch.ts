@@ -35,7 +35,7 @@ export const exampleSch = {
         type: String,
         label: 'Tipo',
         defaultValue: '',
-        optional: false,
+        optional: true,
         options: [
             { value: 'normal', label: 'Normal' },
             { value: 'hard', label: 'Dificil' },
@@ -47,7 +47,7 @@ export const exampleSch = {
         type: [String],
         label: 'Tipo com vários valores',
         defaultValue: '',
-        optional: false,
+        optional: true,
         multiple: true,
         visibilityFunction: (doc: any) => !!doc.type && doc.type === 'extra',
         options: [

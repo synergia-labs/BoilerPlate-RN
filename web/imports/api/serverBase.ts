@@ -1082,6 +1082,8 @@ export class ServerApiBase<Doc extends IDoc> {
 
 					// Here With pass the new Metoer Method with the framework
 					// security and the meteor _context.
+
+					console.log(',etepr ', meteorContext.user)
 					const functionResult = func(...param, meteorContext);
 					if (action === 'insert') {
 						meteorContext.docId = functionResult;
@@ -1215,6 +1217,7 @@ export class ServerApiBase<Doc extends IDoc> {
 	serverInsert(_docObj: Doc | Partial<Doc>, _context: IContext) {
 		try {
 			const id = _docObj._id;
+			console.log('oiasdasdsa', _context.user)
 			if (this.beforeInsert(_docObj, _context)) {
 				_docObj = this._checkDataBySchema(_docObj as Doc, this.auditFields);
 				this._includeAuditData(_docObj, 'insert');
@@ -1248,6 +1251,7 @@ export class ServerApiBase<Doc extends IDoc> {
 	 */
 	beforeInsert(_docObj: Doc | Partial<Doc>, _context: IContext) {
 		if (this.defaultResources && this.defaultResources[`${this.collectionName?.toUpperCase()}_CREATE`]) {
+			console.log('o contexto 0', _context.user)
 			segurancaApi.validarAcessoRecursos(_context.user, [`${this.collectionName?.toUpperCase()}_CREATE`]);
 		}
 

@@ -4,25 +4,35 @@ import { ILabelValuePair } from '../../../typings/GeneralTypings';
 import { SimpleLabel } from '../../../paper/components/SimpleLabel/SimpleLabel';
 
 interface ISelectInputSF extends ISFComponent {
-	data?: ILabelValuePair[];
+	options?: ILabelValuePair[];
 	onChange?: (selected: { [key: string]: any }) => void;
 	value?: string;
 }
 
 export const SelectInputSF = (props: ISelectInputSF) => {
-	const { label, name, data, value, onChange, ...otherProps } = props;
+	const { label, name, data, options, value, onChange,readOnly, ...otherProps } = props;
+
+	const onChangeSelect = (event) => {
+		if (event.value === '#-#') {
+			onChange && onChange({ name, target: { name, value: undefined } }, { name, value: undefined });
+			return;
+		}
+		if (!readOnly) {
+			onChange && onChange({ name, target: { name, value: event.value } }, { name, value: event.value });
+		}
+	};
 
 	return (
 		<>
 			<SimpleLabel>{label}</SimpleLabel>
 			<SelectDropdown
 				{...otherProps}
-				data={data as ILabelValuePair[]}
-				onSelect={onChange as (selected: { [key: string]: any }) => void}
+				data={options as ILabelValuePair[]}
+				onSelect={onChangeSelect}
 				buttonTextAfterSelection={(selectedItem, index) => selectedItem.label}
 				rowTextForSelection={(item, index) => item.label}
 				defaultButtonText="Escolha uma opção"
-				defaultValue={data?.find((x) => x.value === value)}
+				defaultValue={options?.find((x) => x.value === value)}
 			/>
 		</>
 	);

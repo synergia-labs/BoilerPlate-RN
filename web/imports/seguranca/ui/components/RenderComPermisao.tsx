@@ -26,6 +26,7 @@ export const RenderComPermissao = ({
     ignorar = false,
 }: RenderComPermissaoProps): JSX.Element | null => {
     const user = getUser();
+    console.log('o contexto 2', user)
     if (ignorar || segurancaApi.podeAcessarRecurso(user, ...recursos)) {
         if (exibir) {
             if (exibir()) return children;

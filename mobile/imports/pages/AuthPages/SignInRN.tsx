@@ -87,7 +87,7 @@ export const SignInRN = () => {
 					} else {
 						const { _id, email, username} = userData;
 						const user = { _id, email, username, nome: username };
-						console.log(user)
+						console.log(userData)
 						await configuraUsuarioAsyncStorage(user);
 						setAsyncStorageUser(user);
 					}

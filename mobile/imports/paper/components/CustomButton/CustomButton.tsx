@@ -10,11 +10,12 @@ interface ICustomButton extends PressableProps {
 	endIcon?: string;
 	text?: string;
 	disabled?: boolean;
+	submit?: boolean;
 	onPress?: () => void;
 }
 
 export const CustomButton = (props: ICustomButton) => {
-	const { size = 'medium', variant = 'primary', startIcon, endIcon, text, disabled = false, onPress, style } = props;
+	const { size = 'medium', variant = 'primary', startIcon, endIcon, text, disabled = false, onPress, style, submit } = props;
 	const [isPressed, setIsPressed] = useState(false);
 	const isSecondary = variant === 'secondary';
 	const isSmall = size === 'small';

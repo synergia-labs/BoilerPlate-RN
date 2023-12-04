@@ -15,8 +15,6 @@ Dentre os benefícios de adotá-lo no desenvolvimento de um novo produto nós po
 
 - SimpleForm - gestão automática de formulaŕios, incluindo a inserçaõ de validações,comportamentos e informações do schema do banco de dados.
 
-- SimpleTable - geração automática de tabelas a partir do schema do banco de dados, apresentando de forma intuitiva e simples as informações contidas no banco.
-
 - UploadFiles - importação de arquivos de vários formatos.
 
 - APIs estruturadas em módulos - padronização e modularização da implementação das funcionalidades do sistema.

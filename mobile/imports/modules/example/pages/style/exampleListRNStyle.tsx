@@ -8,8 +8,7 @@ export const exampleListRNStyle = (colors: any) => StyleSheet.create({
 	fab: {
 		position: 'absolute',
 		margin: 16,
-		left: 0,
+		right: 0,
 		bottom: 0,
-		// backgroundColor: colors.branco
 	}
 });

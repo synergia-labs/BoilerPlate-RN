@@ -18,27 +18,27 @@ export const exampleSch = {
 		type: String,
 		label: 'Descrição',
 		defaultValue: '',
-		optional: false
+		optional: true
 	},
 	check: {
 		type: Boolean,
 		frontEndComponent: 'checkbox',
 		label: 'Checked?',
 		defaultValue: false,
-		optional: false
+		optional: true
 	},
 	statusToggle: {
 		type: Boolean,
 		frontEndComponent: 'switch',
 		label: 'Status Toggle',
 		defaultValue: false,
-		optional: false
+		optional: true
 	},
 	type: {
 		type: String,
 		label: 'Tipo',
 		defaultValue: '',
-		optional: false,
+		optional: true,
 		options: [
 			{ value: 'normal', label: 'Normal' },
 			{ value: 'hard', label: 'Dificil' },
@@ -152,12 +152,12 @@ export const exampleSch = {
 };
 
 export interface IExample extends IDoc {
-	audio: string;
-	image: string;
+	audio?: string;
+	image?: string;
 	title: string;
-	slider: number;
-	tasks: Object;
-	contacts: Object;
+	slider?: number;
+	tasks?: Object;
+	contacts?: Object;
 	date: Date;
 	files: any;
 	address: string;

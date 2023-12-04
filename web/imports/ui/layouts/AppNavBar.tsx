@@ -144,7 +144,7 @@ export const AppNavBar = (props: IAppNavBar) => {
 					{'-'}
 				</Button>
 				<Box sx={{color: 'white', marginLeft: 2, marginRight: 2}}>
-					fontScale
+					texto
 				</Box>
 				<Button
 					variant={'contained'}
