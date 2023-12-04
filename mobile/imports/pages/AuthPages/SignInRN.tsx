@@ -78,6 +78,7 @@ export const SignInRN = () => {
 				}
 			} else {
 				const user = Meteor.user();
+				console.log('LoggedUser',user)
 				userProfileApi.callMethod('getDados', email, async (e: any, userData: any) => {
 					if (!!e) {
 						showSnackBar({
@@ -86,7 +87,8 @@ export const SignInRN = () => {
 						});
 					} else {
 						const { _id, email, username} = userData;
-						const user = { _id, email, username, nome: username };
+						const authToken = Meteor.getAuthToken();
+						const user = { _id, email, username, nome: username,authToken };
 						console.log(userData)
 						await configuraUsuarioAsyncStorage(user);
 						setAsyncStorageUser(user);
