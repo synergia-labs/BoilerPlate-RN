@@ -5,5 +5,10 @@ export const baseOfflineSch = {
 	},
 	data: {
 		type: 'string'
-	}
+	},
+	sincronizadoEm: {
+		type: 'date',
+		indexed: true,
+		optional: true
+	},
 };

@@ -26,5 +26,18 @@ export const exampleDetailRNStyle =(colors: any) => StyleSheet.create({
 		alignItems: 'center',
 		flexDirection: 'row',
 		paddingTop: 10
+	},
+	renderImagem: {
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		flex: 1,
+		marginBottom: 32
+	},
+	emptyState: { marginTop: 16, flex: 1, alignItems: 'center' },
+	textoEmptyState: {
+		color: colors.cinza60,
+		marginTop: 44,
+		marginBottom: 24,
+		alignItems: 'center'
 	}
 });

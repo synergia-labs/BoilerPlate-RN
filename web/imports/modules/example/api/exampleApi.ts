@@ -1,6 +1,6 @@
 // region Imports
 import { ProductBase } from '../../../api/productBase';
-import { exampleSch, IExample } from './exampleSch';
+import { IExample, exampleSch } from '/shared/modules/example/exampleSch';
 
 class ExampleApi extends ProductBase<IExample> {
     constructor() {

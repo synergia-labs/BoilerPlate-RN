@@ -3,11 +3,13 @@ import { exampleOff as example } from './imports/modules/example/api/exampleOff'
 
 import { requestRealm } from './imports/libs/requestRealm';
 
+
+//importe e define o schema do seu módulo aqui
 const realmSchemas = [
 	example.getSchema()
 ];
 
-const realmSchemaNames = [ 'example'];
+const realmSchemaNames = [ 'example']; //escreva o nome do seu módulo aqui
 
 export const inicializaRealmGlobal = async () => {
 	const realm = await Realm.open({

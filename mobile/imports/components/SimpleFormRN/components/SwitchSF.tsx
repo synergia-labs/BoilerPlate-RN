@@ -12,11 +12,10 @@ interface ISwitchSF extends ISFComponent {
 }
 
 export const SwitchSF = (props: ISwitchSF) => {
-	const { label, name, onChange, value, switchStyle, contentContainerStyle, readOnly,...otherProps } = props;
-
+	const { label, name, onChange, value, switchStyle, contentContainerStyle, readOnly, disabled, ...otherProps } = props;
 	const handleChangeSwitch = (event: any) => {
 		if (!readOnly) {
-			onChange && onChange({ name, target: { name, value: event }});
+			onChange && onChange({ name, target: { name, value: event }}, { name, value: event });
 		}
 	};
 
@@ -28,6 +27,7 @@ export const SwitchSF = (props: ISwitchSF) => {
 				onValueChange={handleChangeSwitch}
 				value={value}
 				style={switchStyle ? switchStyle : { width: 50 }}
+				// disabled={false}
 			/>
 		</View>
 	);

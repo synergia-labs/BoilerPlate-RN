@@ -5,7 +5,7 @@ import { GeneralComponents } from './imports/generalComponents/GeneralComponents
 import { NetInfoContext } from './imports/context/NetInfoContext';
 import NetInfo from '@react-native-community/netinfo';
 import { accentColors, temaDark, temaLight, theme } from './imports/paper/themeRN';
-import { inicializaRealmGlobal } from './InicializaRealm';
+import { deletarBancoInteiro, deletarBancoInteiroAgressivamente, inicializaRealmGlobal } from './InicializaRealm';
 import { AppContainer } from './imports/pages/LandingPages/AppContainer';
 
 
@@ -23,8 +23,8 @@ export const AppRN = () => {
 	useEffect(() => {
 		  const inicializaRealm = async () => {
 			  await inicializaRealmGlobal();
-			  // await deletarBancoInteiro();
-			  // await deletarBancoInteiroAgressivamente();
+			//   await deletarBancoInteiro();
+			//   await deletarBancoInteiroAgressivamente();
 		  };
 		  inicializaRealm();
 	  return () => {

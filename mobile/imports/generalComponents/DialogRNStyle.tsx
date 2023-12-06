@@ -1,21 +1,18 @@
 import { StyleSheet } from 'react-native';
 import { theme } from '../paper/themeRN';
 
-export const dialogRNStyles = StyleSheet.create({
-	actions: { width: '100%', alignItems: 'center', justifyContent: 'center' },
+export const dialogRNStyles = (colors:any) => StyleSheet.create({
+	actions: { width: '100%', alignItems: 'center', justifyContent: 'space-around' },
 	dismissButton: {
-		borderColor: theme.colors.verdeEscuro,
-		borderWidth: 1,
 		paddingHorizontal: 16,
 		paddingVertical: 10,
-		color: theme.colors.verdeEscuro,
+		color: colors.accentClaro,
 		borderRadius: 4
 	},
 	confirmButton: {
-		backgroundColor: theme.colors.verdeEscuro,
 		paddingHorizontal: 16,
 		paddingVertical: 10,
-		color: theme.colors.branco,
+		color: colors.accentClaro,
 		borderRadius: 4
 	}
 });

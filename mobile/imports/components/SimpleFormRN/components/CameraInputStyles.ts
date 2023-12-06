@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
+export const cameraInputStyles = (colors: any) => StyleSheet.create({
 	footer: {
 		position: 'absolute',
 		bottom: 0,

@@ -20,11 +20,10 @@ interface ITextInputSF extends ISFComponent {
 	keyboardType?: KeyboardTypeOptions;
 	error?: boolean;
 	activeUnderlineColor?: string;
-	readOnly?:boolean;
 }
 
 export const TextInputSF = (props: ITextInputSF) => {
-	const { name, label, disabled, mask, style, placeholderTextColor, error, readOnly, ...otherProps } = props;
+	const { name, label, disabled, mask, style, placeholderTextColor, error, ...otherProps } = props;
 
 	const { onChange, onChangeText, value } = otherProps;
 
@@ -40,7 +39,7 @@ export const TextInputSF = (props: ITextInputSF) => {
 	const maskedInputProps = mask
 		? useMaskedInputProps({
 				value: value as string,
-				onChangeText: onChange,
+				onChange,
 				mask
 		  })
 		: null;

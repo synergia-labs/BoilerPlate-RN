@@ -21,7 +21,7 @@ import { Button, Card, FAB, IconButton, Modal, Portal } from 'react-native-paper
 import { theme } from '../../paper/themeRN';
 // import SimpleLabelView from "../SimpleLabelView/SimpleLabelView";
 
-var isDate = function (date) {
+let isDate = function (date) {
 	return new Date(date) !== 'Invalid Date' && !isNaN(new Date(date));
 };
 
@@ -49,6 +49,8 @@ const SubFormArrayComponent = ({
 	const [mode, setMode] = React.useState(props.mode || 'edit');
 	const [showModal, setShowModal] = React.useState(false);
 	const [changeByUser, setChangeByUser] = React.useState(false);
+
+	
 
 	const closeModal = () => {
 		setShowModal(false);
@@ -360,6 +362,8 @@ const SubFormComponent = ({ reactElement, childrensElements, name, ...props }: I
 	const [mode, setMode] = React.useState(props.mode || 'edit');
 	const [changeByUser, setChangeByUser] = React.useState(false);
 
+	
+
 	let formRef = {};
 
 	React.useEffect(() => {
@@ -517,6 +521,7 @@ const FieldComponent = ({ reactElement, name, elementProps, ...props }: IFieldCo
 			return true;
 		},
 		setValue: (newValue: any) => {
+			
 			try {
 				setValue(newValue);
 				props.getDoc()[name] !== newValue && props.setDoc({ [name]: newValue });
@@ -547,6 +552,7 @@ const FieldComponent = ({ reactElement, name, elementProps, ...props }: IFieldCo
 	});
 
 	const onChange = (e, fieldData = {}) => {
+
 		const field = {
 			...(props.fieldSchema ? props.fieldSchema : {}),
 			...(e ? e.target : {}),
@@ -572,7 +578,6 @@ const FieldComponent = ({ reactElement, name, elementProps, ...props }: IFieldCo
 				reactElement.props.onChange(e, field);
 			}
 		}
-
 		if (hasValue(field.value)) {
 			setError(false);
 		}
@@ -772,6 +777,7 @@ class SimpleFormRN extends Component<ISimpleFormProps> {
 		self.fields[element.props.name] = { type: elementName };
 
 		if (element.props.isSubForm && !!element.props.name) {
+			
 			return (
 				<SubFormComponent
 					{...element.props}
@@ -789,6 +795,7 @@ class SimpleFormRN extends Component<ISimpleFormProps> {
 				/>
 			);
 		} else if (element.props.isSubFormArray && !!element.props.name) {
+			
 			return (
 				<SubFormArrayComponent
 					{...element.props}
@@ -820,6 +827,7 @@ class SimpleFormRN extends Component<ISimpleFormProps> {
 		} else {
 			return (
 				<FieldComponent
+
 					elementProps={element.props || {}}
 					name={element.props.name}
 					key={element.props.name ? element.props.name : 'el' + index}
@@ -1019,7 +1027,7 @@ const styles = StyleSheet.create({
 		borderBottomColor: '#96A2B4',
 		padding: 4,
 		borderRightWidth: 4,
-		borderRightColor: '#96A2B4'
+		borderRightColor: '#96A2B4',
 	},
 	containerEmptyItens: {
 		paddingLeft: 16,

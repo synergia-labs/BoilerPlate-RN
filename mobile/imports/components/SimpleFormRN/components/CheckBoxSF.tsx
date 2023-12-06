@@ -2,7 +2,8 @@ import { Checkbox } from 'react-native-paper';
 import { ISFComponent } from '../ISFComponent';
 import { SimpleLabel } from '../../../paper/components/SimpleLabel/SimpleLabel';
 import { hasValue } from '../../../libs/hasValue';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { GestureResponderEvent } from 'react-native';
 
 interface ICheckBoxSF extends ISFComponent {
 	value?: boolean;
@@ -11,20 +12,28 @@ interface ICheckBoxSF extends ISFComponent {
 }
 
 export const CheckBoxSF = (props: ICheckBoxSF) => {
-	const { label, name, value, onChange, readOnly, 	
+	const { label, name, value, onChange, readOnly,	disabled,
 		...otherProps } = props;
-	
 
-	const handleChange = (event) => {
+	const [checked, setChecked] = useState(value ?? false);
+
+	useEffect(() => {
+		handleChange();
+	},[checked])
+	
+	const handleChange = () => {
 		if(!readOnly){
-			onChange && onChange({ name, target: { name, value: !value }});
+			onChange && onChange({ name, target: { name, value: checked }}, { name, value: checked });
 		}
 	};
 
 	return (
 		<>
-				<SimpleLabel>{label}</SimpleLabel>
-				<Checkbox {...otherProps}  status={value ? 'checked' : 'unchecked'} onPress={handleChange} />
+			<SimpleLabel>{label}</SimpleLabel>
+			<Checkbox {...otherProps}  status={value ? 'checked' : 'unchecked'} onPress={() => {
+					setChecked(!checked);
+				  }	}
+				  />
 		</>
 	);
 };

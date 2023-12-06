@@ -37,12 +37,11 @@ export const AppContainer = (_props: any) => {
 			return { connected: status.connected };
 		},[]);
 
-	console.log('user',user,Meteor.user())
 
 	useEffect(() => {
 		if(connected) {
 			Meteor._loadInitialUser().then(r=>{
-				if(!Meteor.user()&&!!user.authToken) {
+				if(!Meteor.user()&&user?.authToken) {
 					Meteor._loginWithToken(user.authToken);
 				}
 			})

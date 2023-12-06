@@ -1,8 +1,8 @@
 // region Imports
 import { Recurso } from '../config/Recursos';
-import { exampleSch, IExample } from './exampleSch';
 import { userprofileServerApi } from '/imports/userprofile/api/UserProfileServerApi';
 import { ProductServerBase } from '/imports/api/productServerBase';
+import { IExample, exampleSch } from '/shared/modules/example/exampleSch';
 // endregion
 
 class ExampleServerApi extends ProductServerBase<IExample> {

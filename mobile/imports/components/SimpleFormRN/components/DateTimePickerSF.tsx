@@ -22,7 +22,7 @@ export const DateTimePickerSF = (props: IDatePickerSF) => {
 	return (
 		<>
 			<TouchableOpacity onPress={handleOpen}>
-				<Text variant="bodyMedium" style={{ color: theme.colors.onBackground, paddingBottom: 8 }}>
+				<Text variant="bodyMedium" style={{ paddingBottom: 8 }}>
 					{label}
 				</Text>
 				<View style={{ borderWidth: 1, borderColor: theme.colors.cinza80, borderRadius: 8, padding: 16 }}>

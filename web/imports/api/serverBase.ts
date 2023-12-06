@@ -158,6 +158,7 @@ export class ServerApiBase<Doc extends IDoc> {
 
 		this.findOne = this.findOne.bind(this);
 		this.find = this.find.bind(this);
+		this.findById = this.findById.bind(this);
 
 		this.initCollection(apiName);
 		this.initApiRest();
@@ -1083,7 +1084,6 @@ export class ServerApiBase<Doc extends IDoc> {
 					// Here With pass the new Metoer Method with the framework
 					// security and the meteor _context.
 
-					console.log(',etepr ', meteorContext.user)
 					const functionResult = func(...param, meteorContext);
 					if (action === 'insert') {
 						meteorContext.docId = functionResult;
@@ -1164,6 +1164,7 @@ export class ServerApiBase<Doc extends IDoc> {
 		this.registerMethod('countDocuments', this.countDocuments);
 		this.registerMethod('getDocs', this.serverGetDocs);
 		this.registerMethod('exportCollection', this.exportCollection);
+		this.registerMethod('findById', this.findById);
 	}
 
 	exportCollection = () => {
@@ -1478,5 +1479,9 @@ export class ServerApiBase<Doc extends IDoc> {
 	 */
 	findOne(query: Selector<Doc> | string = {}, projection = {}): Partial<Doc> {
 		return this.getCollectionInstance().findOne(query, projection);
+	}
+
+	findById(id: string) {
+		return  this.getCollectionInstance().findOne({ _id: id });
 	}
 }

@@ -39,35 +39,48 @@ export const ExampleList = (props: IExampleList) => {
 	);
 
 	const loadExemplos = async () => {
-		if (isInternetConnected) {
-			Meteor.call('example.obtemExemplos', (e: IMeteorError, r: IExample[]) => {
-				if (!e) {
-				}
-				// console.log('rrr', r)
-				setExemplos(r);
-			});
-		} 
+		//O CODIGO ABAIXO BUSCARIA O DADO DIRETAMENTE NO METEOR EM CASO DE CONEXAO COM A INTERNET
+		// if (isInternetConnected) {
+		// 	Meteor.call('example.obtemExemplos', (e: IMeteorError, r: IExample[]) => {
+		// 		if (!e) {
+		// 		}
+		// 		// console.log('rrr', r)
+		// 		setExemplos(r);
+		// 	});
+		// } 
+
+		const value  = await exampleOff.getCollection<IExample>();
+		value && setExemplos(value)
 	};
 
 	const confirmDelete = async (doc: IExample) => {
-		if (isInternetConnected) {
-			Meteor.call('example.remove', doc, (e: IMeteorError, r: any) => {
-				if (e) console.log(e);
-				else {
-					// snackbar sucesso
-					showSnackBar({ texto: 'O exemplo foi removido com sucesso!', duration: 2000 });
-					loadExemplos();
-				}
-			});
-		} else {
-			try {
-				await exampleOff.remove(doc);
-			} catch (e: any) {
-				console.log(e);
-			}
-			showSnackBar({ texto: 'O exemplo foi removido com sucesso!', duration: 2000 });
-			loadExemplos();
+		try {
+			await exampleOff.remove(doc);
+		} catch (e: any) {
+			console.log(e);
 		}
+		showSnackBar({ texto: 'O exemplo foi removido com sucesso!', duration: 2000 });
+		loadExemplos();
+
+		//O CODIGO ABAIXO SALVARIA O DADO DIRETAMENTE NO METEOR EM CASO DE CONEXAO COM A INTERNET
+		// if (isInternetConnected) {
+		// 	Meteor.call('example.remove', doc, (e: IMeteorError, r: any) => {
+		// 		if (e) console.log(e);
+		// 		else {
+		// 			// snackbar sucesso
+		// 			showSnackBar({ texto: 'O exemplo foi removido com sucesso!', duration: 2000 });
+		// 			loadExemplos();
+		// 		}
+		// 	});
+		// } else {
+		// 	try {
+		// 		await exampleOff.remove(doc);
+		// 	} catch (e: any) {
+		// 		console.log(e);
+		// 	}
+		// 	showSnackBar({ texto: 'O exemplo foi removido com sucesso!', duration: 2000 });
+		// 	loadExemplos();
+		// }
 	};
 
 	const handleDelete = (doc: IExample) => {
@@ -84,7 +97,7 @@ export const ExampleList = (props: IExampleList) => {
 				<Text variant='headlineSmall'> Lista de Exemplos</Text>
 			</View>
 			<ScrollView style={{ flex: 1}}>
-			{exemplos &&
+			{exemplos.length > 0 &&
 					exemplos.map((e, i) => (
 						<CardExemplo
 							key={i}

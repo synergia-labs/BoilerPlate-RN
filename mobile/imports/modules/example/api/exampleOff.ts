@@ -4,7 +4,7 @@ import { BaseOfflineRN } from '../../../api/baseOfflineRN';
 
 class ExampleOff extends BaseOfflineRN<IExample> {
 	constructor() {
-		super('exampleOff', exampleSch, exampleRealmSch);
+		super('exampleOff', 'example',exampleSch, exampleRealmSch);
 	}
 }
 
