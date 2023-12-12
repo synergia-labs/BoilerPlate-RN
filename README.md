@@ -23,7 +23,7 @@ Para executar o projeto é necessário ter instalado:
     * NDK 25.1.X
     * Android SDK Command-line Tools (lastest)
     * CMake 3.22.1
-2. Java 18 ou superior
+2. Java 17 ou superior
 3. Node 
 
 
@@ -51,6 +51,11 @@ No mesmo diretório, em outra guia do terminal execute:
 
 
 ## Sobre a estrutura do projeto
+
+
+### Suporte
+
+Atualmente o projeto suporta até o SDK 34, Android 14
 
 ### Definição de estilos e fonte
 
